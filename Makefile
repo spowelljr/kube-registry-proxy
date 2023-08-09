@@ -19,8 +19,6 @@ REPO = gcr.io/k8s-minikube/kube-registry-proxy
 
 build-push:
 	docker run --rm --privileged tonistiigi/binfmt:latest --install all
-	docker buildx create --name multiarch --use
-	docker buildx inspect --bootstrap
-	docker buildx build --push --platform linux/s390x,linux/ppc64le,linux/arm/v7,linux/arm64/v8,linux/amd64 -t $(REPO):$(TAG) .
-	docker buildx use desktop-linux
+	docker buildx create --name multiarch --bootstrap
+	docker buildx build --builder multiarch --push --platform linux/s390x,linux/ppc64le,linux/arm/v7,linux/arm64/v8,linux/amd64 -t $(REPO):$(TAG) .
 	docker buildx rm multiarch
