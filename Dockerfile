@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM nginx:1.23.4
+FROM nginx:1.25.4
 
 RUN apt-get update \
 	&& apt-get install -y \
@@ -21,6 +21,7 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man /usr/share/doc
 
-COPY rootfs /
+COPY rootfs/bin/boot /bin/boot
+COPY rootfs/etc/nginx /etc/nginx
 
 CMD ["/bin/boot"]
