@@ -14,7 +14,7 @@
 
 .PHONY: build-push
 
-TAG = 0.0.6
+TAG = 0.0.7
 REPO = gcr.io/k8s-minikube/kube-registry-proxy
 
 build-push:

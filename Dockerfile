@@ -12,14 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM nginx:1.25.4
+FROM nginx:1.27.1-alpine
 
-RUN apt-get update \
-	&& apt-get install -y \
-		curl \
-		--no-install-recommends \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man /usr/share/doc
+RUN apk update && apk upgrade && apk add bash
 
 COPY rootfs/bin/boot /bin/boot
 COPY rootfs/etc/nginx /etc/nginx
