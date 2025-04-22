@@ -14,8 +14,11 @@
 
 .PHONY: build-push
 
-TAG = 0.0.8
+TAG = 0.0.9
 REPO = gcr.io/k8s-minikube/kube-registry-proxy
+
+build-local-only:
+	docker build -t local/kube-registry-proxy:$(TAG) .
 
 build-push:
 	docker run --rm --privileged tonistiigi/binfmt:latest --install all
